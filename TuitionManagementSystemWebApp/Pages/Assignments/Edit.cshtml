@@ -1,0 +1,52 @@
+﻿@page  "{AssignmentId}"
+@model TuitionManagementSystemWebApp.Pages.Assignments.EditModel
+@{
+}
+
+<h4 class="text-center">Edit @Model.AssignmentId</h4>
+
+
+
+<form method="post">
+ 
+
+
+    <div class="form-group">
+        <label asp-for="@Model.AssignmentType"></label>
+        <input asp-for="@Model.AssignmentType" class="form-control"/>
+    </div>
+
+       <div class="form-group">
+        <label asp-for="@Model.AssignmentQuestion"></label>
+        <input asp-for="@Model.AssignmentQuestion" class="form-control"/>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.SelectedTrainerId"></label>
+        <select asp-for="@Model.SelectedTrainerId" asp-items="@Model.TrainerList" class="form-select"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="@Model.SelectedStudentId"></label>
+        <select asp-for="@Model.SelectedStudentId" asp-items="@Model.StudentList" class="form-select"></select>
+    </div>
+
+      <div class="form-group">
+        <label asp-for="@Model.SelectedCourseId"></label>
+        <select asp-for="@Model.SelectedCourseId" asp-items="@Model.CourseList" class="form-select"></select>
+    </div>
+  
+  
+
+    
+    <div class="form-group">
+        <h6 class="text-success">@Model.SuccessMessage</h6>
+        <h6 class="text-danger">@Model.ErrorMessage</h6>
+        <h4>@Html.ValidationSummary()</h4>
+    </div>
+  
+    <div class="row gx-0">
+        <button type="submit" class="col btn btn-primary me-1">SUBMIT</button>
+        <a href="/Assignments/List" class="col btn btn-default ms-1 border-secondary">Cancel</a>
+    </div>
+</form>

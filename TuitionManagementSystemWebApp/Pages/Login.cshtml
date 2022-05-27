@@ -1,0 +1,34 @@
+﻿@page
+@model TuitionManagementSystemWebApp.Pages.LoginModel
+@{
+}
+
+
+<form method="post">
+
+    <h4 class="text-center">LogIn</h4>
+    <div class="container bg-c-green">
+    
+     <div class="form-group col-ml-7">
+        <label asp-for="@Model.UserName">UserName</label>
+        <input type="text" class="form-control" asp-for="@Model.UserName"/>
+     </div>
+     <br/>
+
+     <div class="form-group col-ml-7">
+        <label asp-for="@Model.Password">Password</label>
+        <input type="password" class="form-control" asp-for="@Model.Password"/>
+      </div>
+
+      <div class="form-group">
+          <h6  class="text-success">@Model.SuccessMessage</h6>
+      </div>
+
+      <div class="form-group">
+          <h6 class="text-danger">@Model.ErrorMessage</h6>
+      </div>
+      <div class="form-group">
+          <button type="submit" class="btn btn-danger">Login</button>
+      </div>
+  </div>
+ </form>

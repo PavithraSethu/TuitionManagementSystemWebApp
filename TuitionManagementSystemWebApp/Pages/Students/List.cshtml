@@ -1,0 +1,114 @@
+﻿@page
+@model TuitionManagementSystemWebApp.Pages.Students.ListModel
+@{
+}
+<form method="post">
+  <div class="row">
+    <div class="col-sm-10"><h3>Students</h3></div>
+    <div class="col-sm-2">
+        <a href="/Students/Add" class="btn btn-outline-success" role="button">
+            <i class="fa fa-add"></i>Add
+        </a>
+    </div>
+</div>
+<br/>
+
+<br/><br/>
+   <div class="row">
+        <div class="col-md-12 mx-auto">
+            <div class="input-group">
+                <input class="form-control border rounded-pill"
+                       type="search" placeholder="type search text" id="example-search-input"
+                       asp-for="@Model.SearchText">
+                <span class="input-group-append">
+                    <button class="btn btn-outline-primary bg-white border rounded-pill ms-n5"
+                            type="submit" asp-page-handler="Search">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                    <button class="btn btn-outline-dark bg-white border rounded-pill ms-n10"
+                            type="submit" asp-page-handler="Clear">
+                        <i class="fa fa-remove"></i> Clear
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+
+
+<div class="form-group">
+    <h6 class="text-success">@Model.SuccessMessage</h6>
+    <h6 class="text-danger">@Model.ErrorMessage</h6>
+    <h6 class="text-danger">@Html.ValidationSummary()</h6>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope = "col">StudentId</th>
+            <th scope = "col">FirstName</th>
+            <th scope = "col">LastName</th>
+             <th scope="col">DBO</th>
+            <th scope ="col">Age</th>
+            <th scope ="col">Address</th>
+            <th scope ="col">Gender</th>
+             <th scope="col">Email</th>
+              <th scope="col">MobileNumber</th>
+             <th scope ="col">Mark</th>
+              <th scope="col">TotalMark</th>
+            <th scope="col">Status</th>
+            <th scope="col">TrainerId</th>
+            <th scope = "col">Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+       @if (Model.Student == null || Model.Student.Count < 0)
+            {
+                <tr>
+                    <td>No Data Found</td>
+                </tr>
+            }
+
+      else
+      {
+
+     
+        @foreach(var s in @Model.Student)
+            {
+                <tr>
+                    <td>@s.StudentId</td>
+                    <td>@s.FirstName</td>
+                    <td>@s.LastName</td>
+                    <td>@s.DOB</td>
+                    <td>@s.Age</td>
+                    <td>@s.Address</td>
+                    <td>@s.Gender</td>
+                    <td>@s.Email</td>
+                    <td>@s.MobileNumber</td>
+                    <td>@s.Mark</td>
+                    <td>@s.TotalMark</td>
+                    <td>@s.Status</td>
+                    <td>@s.TrainerId</td>
+
+                     <td>
+
+                     @if (User.IsInRole("Trainer"))
+                        {
+                           <a href="/Students/Edit/@s.TrainerId" class="btn btn-outline-warning" role="button">
+                                <i class="fa fa-pencil"></i>Edit
+                           </a>
+                        
+                         }
+                    </td>
+
+                </tr>
+            }
+        }
+        </tbody>
+    </table>
+    </form>
+
+

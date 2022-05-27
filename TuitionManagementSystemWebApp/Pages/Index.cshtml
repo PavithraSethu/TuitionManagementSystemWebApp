@@ -1,0 +1,83 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+@if (User.Identity.IsAuthenticated)
+{
+
+    @if (User.IsInRole("Trainer"))
+    {
+
+       
+        <h4>@Model.ErrorMessage</h4>
+
+        <div class="row">
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-blue db-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Trainers</h6>
+                        <h2 class="text-end"><i class="fa fa-person float-start"></i><span>@Model.TrainerCount</span></h2>
+                        <p class="m-b-0">Active <span class="f-right"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-green db-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">students</h6>
+                        <h2 class="text-end"><i class="fa fa-person float-start"></i><span>@Model.StudentCount</span></h2>
+                        <p class="m-b-0">Active <span class="float-end"></span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-xl-4">
+                <div class="card bg-c-pink db-card">
+                    <div class="card-block">
+                        <h6 class="m-b-20">Courses</h6>
+                        <h2 class="text-end"><i class="fa fa-book-copy float-start"></i><span>@Model.DepartmentCount</span></h2>
+                        <p class="m-b-0">Completed <span class="float-end"></span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+
+}
+<form method="post">
+
+
+     <div class = "text-center">
+                   <h4 > Welcome To Tuition Management System</h4>
+    </div>
+    <div class="text-center">
+        @if(HttpContext.User.Identity.IsAuthenticated){
+            <h4 class="display-4">Welcome @HttpContext.User.Identity.Name</h4>
+            <button type="submit" class="btn btn-danger "><i class="fa fa-sign-out">LogOut</i> </button>
+        }
+        else{
+            <h4 >Please click here to <a href="/Login">Login</a> </h4>
+        }
+    </div>
+    
+        
+            
+                
+
+@*<div>EmployeeCount: @Model.Dashboard.EmployeeCount</div>
+<div>DepartmentCount: @Model.Dashboard.DepartmentCount</div>
+<div>TrainingCount: @Model.Dashboard.TrainingCount</div>
+<div>CompletedTrainingCount: @Model.Dashboard.CompletedTrainingCount</div>*@
+    
+
+            
+        
+    </div>
+</form>
